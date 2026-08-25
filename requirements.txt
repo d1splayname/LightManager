@@ -19,6 +19,7 @@ propcache==0.5.2
 pycparser==3.0
 pydantic==2.13.4
 pydantic_core==2.46.4
+python-dotenv==1.2.3
 python-kasa==0.10.2
 starlette==1.6.0
 typing-inspection==0.4.4
