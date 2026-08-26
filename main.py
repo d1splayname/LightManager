@@ -21,7 +21,7 @@ async def Lights():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-    return {"status": status}
+    return {"is_on": status}
 
 @app.get("/lights/toggle")
 async def ToggleLights():
@@ -38,7 +38,7 @@ async def ToggleLights():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-    return {"status": status}
+    return {"is_on": status}
 
 @app.get("/lights/on")  
 async def TurnOnLights():
