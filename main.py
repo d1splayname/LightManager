@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi import HTTPException
-from kasa import SmartPlug
+from kasa.iot import IotPlug
 
 import os
 import uvicorn
@@ -15,7 +15,7 @@ _IP = os.getenv("IP")
 @app.get("/lights")
 async def Lights():
     try:
-        plug = SmartPlug(_IP)
+        plug = IotPlug(_IP)
         await plug.update()
         status = plug.is_on
     except Exception as e:
@@ -26,7 +26,7 @@ async def Lights():
 @app.get("/lights/toggle")
 async def ToggleLights():
     try:
-        plug = SmartPlug(_IP)
+        plug = IotPlug(_IP)
         await plug.update()
         if plug.is_on:
             await plug.turn_off()
@@ -43,7 +43,7 @@ async def ToggleLights():
 @app.get("/lights/on")  
 async def TurnOnLights():
     try:
-        plug = SmartPlug(_IP)
+        plug = IotPlug(_IP)
         await plug.update()
         await plug.turn_on()
         await plug.update()
@@ -56,7 +56,7 @@ async def TurnOnLights():
 @app.get("/lights/off")
 async def TurnOffLights():
     try:
-        plug = SmartPlug(_IP)
+        plug = IotPlug(_IP)
         await plug.update()
         await plug.turn_off()
         await plug.update()
